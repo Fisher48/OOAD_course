@@ -42,7 +42,7 @@ public class DoubleLinkedList<T> extends LinkedList<T> {
 
     @Override
     public void head() {
-        if (isHead()) {
+        if (!isEmpty()) {
             cursor = head;
             headStatus = HEAD_OK;
         } else {
@@ -52,7 +52,7 @@ public class DoubleLinkedList<T> extends LinkedList<T> {
 
     @Override
     public void tail() {
-        if (isTail()) {
+        if (!isEmpty()) {
             cursor = tail;
             tailStatus = TAIL_OK;
         } else {
@@ -176,7 +176,7 @@ public class DoubleLinkedList<T> extends LinkedList<T> {
     @Override
     public void find(T value) {
         if (isValue()) {
-            Node<T> current = cursor; // Начинаем с головы
+            Node<T> current = cursor != null ? cursor : head; // Начинаем либо с головы, либо с курсора
             while (current != null) {
                 if (current.value.equals(value)) {
                     findStatus = FIND_OK;
@@ -193,22 +193,12 @@ public class DoubleLinkedList<T> extends LinkedList<T> {
     public void removeAll(T value) {
         Node<T> current = head;
         while (current != null) {
-            if (current.value == value) {
+            Node<T> next = current.next; // Сохраняем ссылку на следующий узел
+            if (current.value.equals(value)) {
+                cursor = current;
                 remove();
-            } else {
-                if (current.prev != null) {
-                    current.prev.next = current.next;
-                } else {
-                    head = current.next;
-                }
-                if (current.next != null) {
-                    current.next.prev = current.prev;
-                } else {
-                    tail = current.prev;
-                }
-                size--;
             }
-            current = current.next;
+            current = next;
         }
     }
 

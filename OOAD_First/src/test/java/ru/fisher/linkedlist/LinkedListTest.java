@@ -91,6 +91,9 @@ class LinkedListTest {
         linkedList.find(999);
         System.out.println("Статус поиска - " + linkedList.getFindStatus());
 
+        System.out.println("Удаляем все узлы где значение 0");
+        linkedList.removeAll(0);
+        System.out.println(linkedList.getAllValues());
         linkedList.clear();
         assertEquals(Collections.emptyList(), linkedList.getAllValues());
 
