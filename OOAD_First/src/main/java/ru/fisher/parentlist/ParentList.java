@@ -1,7 +1,5 @@
 package ru.fisher.parentlist;
 
-import ru.fisher.linkedlist.DoubleLinkedList;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
