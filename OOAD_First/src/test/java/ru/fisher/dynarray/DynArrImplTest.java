@@ -55,6 +55,7 @@ public class DynArrImplTest {
         dynArr.remove(10);
         dynArr.remove(10);
         dynArr.remove(10);
+        assertEquals(1,dynArr.getRemoveStatus());
         System.out.print("Кол-во элементов в массиве, после удаления 3-х элементов: ");
         System.out.println(dynArr.size());
         System.out.print("Текущая ёмкость буфера: ");
