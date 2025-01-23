@@ -62,7 +62,7 @@ public class DoubleLinkedList<T> extends LinkedList<T> {
 
     @Override
     public void right() {
-        if (!isValue() && !isTail()) {
+        if (cursor == null || cursor.next == null) {
             rightStatus = RIGHT_ERR;
         } else {
             cursor = cursor.next;
