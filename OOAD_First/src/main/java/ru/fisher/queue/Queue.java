@@ -12,6 +12,7 @@ abstract class Queue<T> {
     public static final int GET_OK = 1;  // Последний get() выполнен успешно (успешно получен элемент)
     public static final int GET_ERR = 2; // Последний get() выполнен с ошибкой (очередь пуста)
 
+    // Постусловие - Создана пустая очередь
     protected Queue() {} // Конструктор
 
     // Команды
