@@ -115,7 +115,13 @@ abstract class ParentList<T> {
     public abstract int getRemoveStatus(); // возвращает значение REMOVE_*
 }
 
-abstract class LinkedList<T> extends ParentList<T> { }
+abstract class LinkedList<T> extends ParentList<T> {
+
+    protected LinkedList() {
+        super();
+    }
+
+}
 
 abstract class TwoWayList<T> extends ParentList<T> {
 
