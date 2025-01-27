@@ -6,25 +6,24 @@ import java.util.List;
 abstract class ParentQueue<T> {
 
     // Интерфейс класса, реализующий АТД ParentQueue
-    public static final int REMOVE_FRONT_OK = 1;
-    public static final int REMOVE_FRONT_ERR = 2;
+    public static final int REMOVE_FRONT_OK = 1; // последняя removeFront() отработала нормально
+    public static final int REMOVE_FRONT_ERR = 2; // последняя removeFront() отработала с ошибкой (очередь пуста)
 
-    public static final int GET_FRONT_OK = 2;
-    public static final int GET_FRONT_ERR = 2;
+    public static final int GET_FRONT_OK = 1; // Последний getFront() выполнен успешно (успешно получен элемент)
+    public static final int GET_FRONT_ERR = 2; // Последний getFront() выполнен с ошибкой (очередь пуста)
 
 
-
-    // Конструктор
+    // Конструктор, создана пустая очередь
     protected ParentQueue() {}
 
-    public abstract T getFront();
-    public abstract void addTail(T value);
-    public abstract void removeFront();
+    public abstract T getFront(); // Возвращает элемент с головы очереди без его удаления
+    public abstract void addTail(T value); // Добавляет элемент в хвост очереди
+    public abstract void removeFront(); // Удаляет элемент из начала очереди
 
-    public abstract int size();
+    public abstract int size(); // Возвращает текущий размер очереди
 
-    public abstract int getGetFrontStatus();
-    public abstract int getRemoveFrontStatus();
+    public abstract int getGetFrontStatus(); // возвращает значение GET_FRONT_*
+    public abstract int getRemoveFrontStatus(); // возвращает значение REMOVE_FRONT_*
 
 
 }
@@ -32,22 +31,23 @@ abstract class ParentQueue<T> {
 abstract class Dequeue<T> extends ParentQueue<T> {
 
     // Интерфейс класса, реализующий АТД Dequeue
-    public static final int REMOVE_TAIL_OK = 1;
-    public static final int REMOVE_TAIL_ERR = 2;
+    public static final int REMOVE_TAIL_OK = 1; // последняя removeTail() отработала нормально
+    public static final int REMOVE_TAIL_ERR = 2; // последняя removeTail() отработала с ошибкой (очередь пуста)
 
-    public static final int GET_TAIL_OK = 2;
-    public static final int GET_TAIL_ERR = 2;
+    public static final int GET_TAIL_OK = 1; // Последний getTail() выполнен ок (успешно получен элемент с хвоста)
+    public static final int GET_TAIL_ERR = 2; // Последний getTail() выполнен с ошибкой (очередь пуста)
 
+    // Конструктор, создана пустая очередь
     protected Dequeue() {
         super();
     }
 
-    public abstract T getTail();
-    public abstract void addFront(T value);
-    public abstract void removeTail();
+    public abstract T getTail(); // Возвращает элемент из хвоста очереди без его удаления
+    public abstract void addFront(T value); // Добавляет элемент в голову очереди
+    public abstract void removeTail(); // Удаляет элемент из хвоста очереди
 
-    public abstract int getGetTailStatus();
-    public abstract int getRemoveTailStatus();
+    public abstract int getGetTailStatus(); // возвращает значение GET_TAIL_*
+    public abstract int getRemoveTailStatus(); // возвращает значение REMOVE_TAIL_*
 
 }
 
@@ -55,31 +55,33 @@ class DequeImpl<T> extends Dequeue<T> {
 
     private final List<T> deque; // Основное хранилище очереди
 
-    private int removeFrontStatus; // Получить статус getFront()
-    private int removeTailStatus; // Получить статус getFront()
+    private int removeFrontStatus; // Получить статус removeFront()
+    private int removeTailStatus; // Получить статус removeTail()
     private int getFrontStatus; // Получить статус getFront()
     private int getTailStatus; // Получить статус getTail()
 
 
+    // Конструктор - создана пустая очередь
     public DequeImpl() {
         deque = new ArrayList<>();
     }
 
-    @Override
-    public T getFront() {
-        if (deque.isEmpty()) {
-            getFrontStatus = GET_FRONT_ERR;
-            return null;
-        }
-        getFrontStatus = GET_FRONT_OK;
-        return deque.getFirst();
-    }
+    // Команды:
 
+    // Постусловие - добавлен элемент в хвост очереди
     @Override
     public void addTail(T value) {
         deque.addLast(value);
     }
 
+    // Постусловие - добавлен элемент в начало очереди
+    @Override
+    public void addFront(T value) {
+        deque.addFirst(value);
+    }
+
+    // Предусловие - очередь не пуста
+    // Постусловие - удален элемент из начала очереди
     @Override
     public void removeFront() {
         if (deque.isEmpty()) {
@@ -89,6 +91,18 @@ class DequeImpl<T> extends Dequeue<T> {
         removeFrontStatus = REMOVE_FRONT_OK;
     }
 
+    // Предусловие - очередь не пуста
+    // Постусловие - удален элемент из хвоста очереди
+    @Override
+    public void removeTail() {
+        if (deque.isEmpty()) {
+            removeTailStatus = REMOVE_TAIL_ERR;
+        }
+        deque.removeLast();
+        removeTailStatus = REMOVE_TAIL_OK;
+    }
+
+    // Предусловие - очередь не пуста
     @Override
     public T getTail() {
         if (deque.isEmpty()) {
@@ -99,25 +113,25 @@ class DequeImpl<T> extends Dequeue<T> {
         return deque.getLast();
     }
 
+    // Предусловие - очередь не пуста
     @Override
-    public void addFront(T value) {
-        deque.addFirst(value);
-    }
-
-    @Override
-    public void removeTail() {
+    public T getFront() {
         if (deque.isEmpty()) {
-            removeTailStatus = REMOVE_TAIL_ERR;
+            getFrontStatus = GET_FRONT_ERR;
+            return null;
         }
-        deque.removeLast();
-        removeTailStatus = REMOVE_TAIL_OK;
+        getFrontStatus = GET_FRONT_OK;
+        return deque.getFirst();
     }
 
+    // Доп. запросы
+    // Возвращает текущий размер очереди
     @Override
     public int size() {
         return deque.size();
     }
 
+    // Доп. статусы
     @Override
     public int getGetFrontStatus() {
         return getFrontStatus;
