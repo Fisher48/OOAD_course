@@ -14,6 +14,10 @@ class DequeImplTest {
     void simpleTest() {
         DequeImpl<Object> deque = new DequeImpl<>();
         assertEquals(0, deque.size());
+        assertEquals(0, deque.getGetFrontStatus());
+        assertEquals(0, deque.getGetTailStatus());
+        assertEquals(0, deque.getRemoveFrontStatus());
+        assertEquals(0, deque.getRemoveTailStatus());
 
         System.out.println("Заполняем в очередь:");
         for (int i = 0; i < 5; i++) {
@@ -22,11 +26,14 @@ class DequeImplTest {
             deque.addFront(front);
             deque.addTail(tail);
         }
+
         assertEquals(10, deque.size());
         deque.printDeque();
 
         System.out.println("Получить элемент из начала - " + deque.getFront());
         System.out.println("Получить элемент из конца - " + deque.getTail());
+        assertEquals(1, deque.getGetFrontStatus());
+        assertEquals(1, deque.getGetTailStatus());
 
         System.out.println("Удаляем элемент в начале и в конце");
         deque.removeFront();
@@ -34,5 +41,7 @@ class DequeImplTest {
         deque.printDeque();
         System.out.println("Получить элемент из начала - " + deque.getFront());
         System.out.println("Получить элемент из конца - " + deque.getTail());
+        assertEquals(1, deque.getRemoveFrontStatus());
+        assertEquals(1, deque.getRemoveTailStatus());
     }
 }
