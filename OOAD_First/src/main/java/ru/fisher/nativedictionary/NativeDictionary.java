@@ -6,18 +6,18 @@ abstract class NativeDictionary<T> {
 
     // Интерфейс класса, реализующий АТД NativeDictionary
     public static final int REMOVE_OK = 1;  // Последний remove() выполнен успешно
-    public static final int REMOVE_ERR = 2; // Последний remove() выполнен с ошибкой (таблица пуста)
+    public static final int REMOVE_ERR = 2; // Последний remove() выполнен с ошибкой (ключа не найдено)
 
-    public static final int PUT_OK = 1;  // Последний put() выполнен успешно
-    public static final int PUT_ERR = 2; // Таблица заполнена
+    public static final int PUT_OK = 1;  // Добавлена новая пара ключ-значение
+    public static final int PUT_ERR = 2; // Обновлено значение существующего ключа
 
     // Конструктор - создан пустой словарь
     public NativeDictionary() {}
 
     // Команды:
 
-    // Предусловие - Такого ключа нет
     // Постусловие - Вставлено значение по ключу и ключ
+    // Если ключ бы, то обновляется значение
     public abstract void put(String key, T value);
 
     // Предусловие - Словарь не пуст
@@ -55,7 +55,6 @@ class Map<T> extends NativeDictionary<T> {
 
     // Команды:
 
-    // Предусловие - такого ключа нет
     // Постусловие - вставлено значение по ключу и ключ
     @Override
     public void put(String key, T value) {
@@ -89,7 +88,7 @@ class Map<T> extends NativeDictionary<T> {
 
     // Запросы
 
-    // Предусловие - есть такой ключ key
+    // Предусловие - есть такой ключ key в словаре
     @Override
     public T getValue(String key) {
         int index = hashFun(key);
