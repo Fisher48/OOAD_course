@@ -28,14 +28,14 @@ class HashTableImplTest {
         hashTable.put("hashtable");
         assertEquals(3, hashTable.getPutStatus());
         assertEquals(7, hashTable.size());
-        assertTrue(hashTable.isContain("in"));
+        assertTrue(hashTable.get("in"));
 
         hashTable.remove("in");
         assertEquals(1, hashTable.getRemoveStatus());
         assertEquals(6, hashTable.size());
-        assertFalse(hashTable.isContain("in"));
+        assertFalse(hashTable.get("in"));
 
-        assertFalse(hashTable.isContain("this item not in hashtable"));
+        assertFalse(hashTable.get("this item not in hashtable"));
         hashTable.remove("this item not in hashtable");
         assertEquals(2, hashTable.getRemoveStatus());
 

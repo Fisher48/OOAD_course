@@ -6,7 +6,7 @@ abstract class HashTable<T> {
 
     // интерфейс класса, реализующий АТД HashTable
     public static final int REMOVE_OK = 1;  // Последний remove() выполнен успешно
-    public static final int REMOVE_ERR = 2; // Последний remove() выполнен с ошибкой (таблица пуста)
+    public static final int REMOVE_ERR = 2; // Элемента нет в таблице (ошибка)
 
     public static final int PUT_OK = 1;  // Последний put() выполнен успешно
     public static final int PUT_ERR = 2; // Таблица заполнена
@@ -19,7 +19,7 @@ abstract class HashTable<T> {
 
     // Команды:
 
-    // Предусловие - в таблице есть место
+    // Предусловие - в таблице имеется значение value
     // Постусловие - вставлено значение value в слот, вычисляемое с помощью функции поиска
     public abstract void put(T value);
 
@@ -29,7 +29,7 @@ abstract class HashTable<T> {
 
     // Запросы:
 
-    public abstract boolean isContain(T value); // есть ли значение в таблице
+    public abstract boolean get(T value); // есть ли значение в таблице
 
     // Доп. запросы
     public abstract int size();  // возвращает количество элементов в хэш-таблице
@@ -99,7 +99,7 @@ class HashTableImpl<T> extends HashTable<T> {
     @Override
     public void remove(T value) {
         int index = seekSlot(value);
-        if (isContain(value)) {
+        if (get(value)) {
             slots[index] = null;
             removeStatus = REMOVE_OK;
             count--;
@@ -116,7 +116,7 @@ class HashTableImpl<T> extends HashTable<T> {
 
     // Проверка наличия элемента
     @Override
-    public boolean isContain(T value) {
+    public boolean get(T value) {
         int index = seekSlot(value);
         return index != -1 && slots[index] != null;
     }
