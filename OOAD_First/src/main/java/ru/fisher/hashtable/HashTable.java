@@ -2,7 +2,7 @@ package ru.fisher.hashtable;
 
 import java.util.Arrays;
 
-abstract class HashTable<T> {
+public abstract class HashTable<T> {
 
     // интерфейс класса, реализующий АТД HashTable
     public static final int REMOVE_OK = 1;  // Последний remove() выполнен успешно
@@ -50,7 +50,7 @@ class HashTableImpl<T> extends HashTable<T> {
     private int removeStatus;
 
 
-    protected HashTableImpl(int maxSize, int stp) {
+    public HashTableImpl(int maxSize, int stp) {
         super(maxSize);
         count = 0;
         step = stp;
