@@ -15,7 +15,7 @@ abstract class BloomFilter<T> {
 
 
     // Запросы:
-    public abstract boolean isValue(String str1);
+    public abstract boolean isValue(String str1);  // проверка, имеется ли строка в фильтре
 
 }
 
