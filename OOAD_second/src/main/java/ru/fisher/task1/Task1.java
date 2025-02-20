@@ -24,7 +24,6 @@ abstract class Animal {
 
 
     // Пример полиморфизма
-    // Переопределенный метод голоса для класса Cat
     public abstract void setVoice();
 }
 
