@@ -91,19 +91,15 @@ public class Task1 {
         Dog dog = new Dog();
         dog.setName("Стрелка");
         dog.setAge(3);
-        dog.setVoice();
 
         Dog dog2 = new Dog(2, "Белка");
-        dog2.setVoice();
 
         Cat cat = new Cat(14, "Барсик");
-        cat.setVoice();
         cat.setPurr(10);
 
         Cat cat2 = new Cat();
         cat2.setName("Сержик");
         cat2.setAge(1);
-        cat2.setVoice();
         cat2.setPurr(8);
 
         // Пример композиции - зоопарк содержит животных
@@ -115,7 +111,12 @@ public class Task1 {
         zoo.getAllAnimals();
         System.out.println();
 
+
         // Пример полиморфизма, при установке метода setVoice() голос устанавливается в зависимости от того, к какому классу применяется метод
+        dog.setVoice();
+        dog2.setVoice();
+        cat.setVoice();
+        cat2.setVoice();
         System.out.println(dog.getName() + " " + dog.getVoice());
         System.out.println(cat.getName() + " " + cat.getVoice());
         System.out.println("Частота мурлыкания - " + cat.getPurr());
