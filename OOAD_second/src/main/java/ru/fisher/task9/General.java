@@ -86,7 +86,7 @@ public class General implements Cloneable, Serializable {
 
     // Получение реального типа объекта (getClass())
     public Class<?> getRealType() {
-        return getClass();
+        return this.getClass();
     }
 
 }
@@ -95,5 +95,4 @@ class Any extends General {
     protected Any(Object name) {
         super(name);
     }
-
 }
