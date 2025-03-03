@@ -1,8 +1,9 @@
-package ru.fisher.task10;
+Решение 10-го задания:
 
-public class Task10 {
+Для ограничения переопределения метода в Java, можно использовать ключевое слово final.
 
-    class Animal {
+````java
+class Animal {
 
         // Помечая метод как final мы ограничиваем дальнейшее его переопределение
         final void immutableScream() {
@@ -20,5 +21,4 @@ public class Task10 {
         }
 
     }
-
-}
+````
