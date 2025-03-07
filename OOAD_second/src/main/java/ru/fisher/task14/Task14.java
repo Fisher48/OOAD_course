@@ -12,7 +12,7 @@ interface Summable<T> {
 }
 
 // Абстрактный базовый класс General
-abstract class General<T extends General<T>> implements Serializable {
+abstract class General<T extends General<T>> implements Serializable, Summable<T> {
 
 }
 
@@ -58,7 +58,7 @@ class Vector<T extends General<T> & Summable<T>> extends General<Vector<T>> impl
 }
 
 // Пример класса, который реализует интерфейс Summable
-class IntegerValue extends General<IntegerValue> implements Summable<IntegerValue> {
+class IntegerValue extends General<IntegerValue> {
     private int value;
 
     public IntegerValue(int value) {
