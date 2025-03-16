@@ -1,6 +1,6 @@
 Решение 20-го задания:
 
-1). Наследования вариаций
+**1). Наследования вариаций**
 
 ````java
 class Animal {
@@ -34,7 +34,8 @@ class Cat extends Animal {
     }
 }
 ````
-2). Наследование с конкретизацией (reification inheritance)
+
+**2). Наследование с конкретизацией (reification inheritance)**
 
 ````java
 abstract class Vehicle {
@@ -51,7 +52,7 @@ class Car extends Vehicle {
 }
 ````
 
-3). Структурное наследование (structure inheritance)
+**3). Структурное наследование (structure inheritance)**
 
 ````java
 
