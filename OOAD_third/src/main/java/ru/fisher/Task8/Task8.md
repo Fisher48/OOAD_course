@@ -104,6 +104,9 @@ public abstract class Statistics {
 
     // Запрос получения кол-во ходов
     public abstract int getMoves();
+
+    // Обновление очков/ходов
+    public abstract void updateStatistics();      
     
     // Сбросить статистику
     public abstract void resetStat();
@@ -117,7 +120,6 @@ public class GameSession {
     public void start();                 // Запуск игры
     public void renderField();           // Отрисовка поля
     public void handlePlayerMove();      // Обработка ввода игрока
-    public void updateStatistics();      // Обновление очков/ходов
     public boolean gameOver();           // Конец игры?
     public void restart();               // Перезапуск игры
     public void exit();                  // Завершить игру
