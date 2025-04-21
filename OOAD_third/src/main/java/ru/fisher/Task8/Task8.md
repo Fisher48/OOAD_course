@@ -113,22 +113,14 @@ public abstract class Statistics {
 }
 
 // Основной класс игры - управляет всем процессом игры
-public abstract class GameSession {
-    
-    public abstract void start();                 // Запуск игры
-    public abstract void renderField();           // Отрисовка поля
-    public abstract void handlePlayerMove();      // Обработка ввода игрока
-    public abstract void updateStatistics();      // Обновление очков/ходов
-    public abstract boolean gameOver();           // Конец игры?
-    public abstract void restart();               // Перезапуск игры
-    public abstract void exit();                  // Завершить игру
-    
-    // Обработка строки ввода пользователя
-    // Предусловие: ввод должен быть корректным
-    // Постусловие: либо происходит действие, либо выводится сообщение об ошибке
-    public abstract void processInput(String input);
-
-    // Вывод сообщения об ошибке
-    public abstract void showError(String message);
+public class GameSession {
+    public void start();                 // Запуск игры
+    public void renderField();           // Отрисовка поля
+    public void handlePlayerMove();      // Обработка ввода игрока
+    public void updateStatistics();      // Обновление очков/ходов
+    public boolean gameOver();           // Конец игры?
+    public void restart();               // Перезапуск игры
+    public void exit();                  // Завершить игру
+    public void showError(String message); // Вывод сообщения об ошибке
 }
 ```
