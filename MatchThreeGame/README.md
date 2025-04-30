@@ -32,5 +32,6 @@ ___
 * exit — выход из игры
 * help — вывод справки
 
-Процесс игры:
-[Игра]()
+Процесс игры:  
+[Игра-1](https://github.com/Fisher48/OOAD_course/blob/main/MatchThreeGame/GameProcessExample.png)  
+[Игра-2](https://github.com/Fisher48/OOAD_course/blob/main/MatchThreeGame/Workprocess%20example.png)
